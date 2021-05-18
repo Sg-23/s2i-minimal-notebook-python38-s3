@@ -23,7 +23,7 @@ rm -rf /tmp/requirements.txt
 # Install pipenv for jupyter-nbrequirements to use
 # TODO: This should be removed once nbrequirements can use Thoth + micropipenv only
 pip install pipenv==2020.11.15
-pip install boto3==1.15.16 s3cmd s3contents hybridcontents
+# pip install boto3==1.15.16 s3cmd s3contents hybridcontents
 # Install mod_wsgi for use in optional webdav support.
 
 pip install 'mod_wsgi==4.6.8'

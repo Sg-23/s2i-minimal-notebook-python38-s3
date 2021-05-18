@@ -124,7 +124,7 @@ if [ -d "$APP_ROOT/src/.jupyter/" ]; then
         "$APP_ROOT/src/.jupyter/" ${APP_ROOT}/etc/jupyter
 fi
 
-jupyter lab build
+jupyter lab build --debug
 
 # Make sure the S2I source directory is empty as we will use the image
 # produced to run further S2I builds

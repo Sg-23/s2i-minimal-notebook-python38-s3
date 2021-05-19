@@ -1,4 +1,6 @@
 import os
+import sys
+sys.setrecursionlimit(50000)
 
 port = int(os.environ.get("JUPYTER_NOTEBOOK_PORT", "8080"))
 

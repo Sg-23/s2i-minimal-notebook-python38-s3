@@ -1,0 +1,50 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: minimal-notebook-ubi8-python38-s3
+  namespace: sonal-project
+spec:
+  lookupPolicy:
+    local: false
+---
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: minimal-notebook-ubi8-python38-s3
+  namespace: sonal-project
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'minimal-notebook-ubi8-python38-s3:v1'
+  resources:
+    limits:
+      cpu: '4'
+      memory: 4Gi
+    requests:
+      cpu: '4'
+      memory: 4Gi
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  strategy:
+    type: Docker
+    dockerStrategy:
+      from:
+        kind: DockerImage
+        name: 'quay.io/thoth-station/s2i-thoth-ubi8-py38:v0.26.0'
+      noCache: true  
+      env:
+        - name: ENABLE_PIPENV
+          value: '1'
+        - name: UPGRADE_PIP_TO_LATEST
+          value: '1'
+        - name: JUPYTER_ENABLE_LAB
+          value: '1'      
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/Sg-23/s2i-minimal-notebook-python38-s3'
+      ref: main
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange

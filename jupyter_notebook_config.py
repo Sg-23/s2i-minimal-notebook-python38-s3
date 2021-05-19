@@ -23,6 +23,7 @@ if os.path.exists(image_config_file):
     with open(image_config_file) as fp:
         exec(compile(fp.read(), image_config_file, 'exec'), globals())
 
+ 
 #######################
 # Directories mapping #
 #######################

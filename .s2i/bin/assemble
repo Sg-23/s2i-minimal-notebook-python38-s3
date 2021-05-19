@@ -40,7 +40,7 @@ rm -rf $HOME/.node-gyp
 cp ${APP_ROOT}/src/jupyter_notebook_config.py /opt/app-root/etc/
 cp ${APP_ROOT}/src/jupyter_kernel_gateway_config.py /opt/app-root/etc/
 cp ${APP_ROOT}/src/httpd-webdav.conf /opt/app-root/etc/
-
+cat /opt/app-root/src/.jupyter/jupyter_notebook_config.py
 # This S2I assemble script is only used when creating the custom image.
 # For when running the image, or using it as a S2I builder, we use a second
 # set of custom S2I scripts. We now need to move these into the correct

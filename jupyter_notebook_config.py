@@ -23,6 +23,9 @@ if os.path.exists(image_config_file):
     with open(image_config_file) as fp:
         exec(compile(fp.read(), image_config_file, 'exec'), globals())
 
+#######################
+# Directories mapping #
+#######################
 import boto3
 from s3contents import S3ContentsManager
 from hybridcontents import HybridContentsManager
@@ -39,7 +42,7 @@ c.HybridContentsManager.manager_classes = {
     # Associate the root directory with a LargeFileManager.
     # This manager will receive all requests that don't fall under any of the
     # other managers.
-    "": LargeFileManager
+    '': LargeFileManager
 }
 
 # Get S3 credentials from environment variables
@@ -76,7 +79,7 @@ if (shared_aws_access_key_id and shared_aws_secret_access_key!=None): # Make sur
 # Initalize arguments for local filesystem
 c.HybridContentsManager.manager_kwargs = {
     # Args for the LargeFileManager mapped to /directory
-    "": {
+    '': {
         'root_dir': '/opt/app-root/src'
     }
 }

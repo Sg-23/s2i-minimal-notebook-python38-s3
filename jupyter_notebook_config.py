@@ -20,7 +20,7 @@ if password:
     del password
     del os.environ['JUPYTER_NOTEBOOK_PASSWORD']
 
-image_config_file = '/opt/app-root/etc/jupyter_notebook_config.py'
+image_config_file = '/opt/app-root/src/.jupyter/jupyter_notebook_config.py'
 
 if os.path.exists(image_config_file):
     with open(image_config_file) as fp:

@@ -39,7 +39,7 @@ c.HybridContentsManager.manager_classes = {
     # Associate the root directory with a LargeFileManager.
     # This manager will receive all requests that don't fall under any of the
     # other managers.
-    '': LargeFileManager
+    'local_directory': LargeFileManager
 }
 
 # Get S3 credentials from environment variables
@@ -59,6 +59,7 @@ if (aws_access_key_id and aws_access_key_id!=None): # Make sure we have usable S
                         use_ssl = True if 'https' in endpoint_url else False ) 
     # Enumerate all accessible buckets and create a folder entry in HybridContentsManager
     for bucket in s3.buckets.all():
+        print(bucket.name)
         c.HybridContentsManager.manager_classes.update({bucket.name: S3ContentsManager})
 
 # Add datalake connection information for shared S3
@@ -76,7 +77,7 @@ if (shared_aws_access_key_id and shared_aws_secret_access_key!=None): # Make sur
 # Initalize arguments for local filesystem
 c.HybridContentsManager.manager_kwargs = {
     # Args for the LargeFileManager mapped to /directory
-    '': {
+    'local_directory': {
         'root_dir': '/opt/app-root/src'
     }
 }
